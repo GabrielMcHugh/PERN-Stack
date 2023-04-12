@@ -7,7 +7,14 @@ export async function up(knex: Knex): Promise<void> {
             .uuid("id")
             .primary()
             .notNullable()
-            .defaultTo(knex.raw("uuid_generate_v4()"))
+            .defaultTo(knex.raw("uuid_generate_v4()"));
+        
+        table.string("title").notNullable();
+        
+        table.boolean("done").notNullable().defaultTo("false");
+
+        table.timestamp("created_at").notNullable();
+        table.timestamp("updated_at").notNullable();
     })
 }
 
